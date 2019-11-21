@@ -1,6 +1,6 @@
 # 532_project
 
-**Collaborators Names**
+**Team Members**
 
 - Ke Xin (Margaret) Zhao
 - Simardeep Kaur
