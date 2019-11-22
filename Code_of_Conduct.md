@@ -1,23 +1,35 @@
-Code of Conduct
-================
+#### Introduction
 
-## Team Contract
+Code of conduct is necessary for promoting a healthy environment among the group while any group project is going on. It is not only limited to classes and labs but also when we are working off campus on any activity related to the project.
 
-  - High quality of work is expected from each team member.
-  - Hesitance to give feedback and ideas has no place in our team.
-  - Work will be distributed equally and divided over the three team
-    members.
-  - Brainstorming is the first step before executing the tasks; and it
-    is our way to make sure that we collected the best ideas from all
-    team members.
-  - We have two meeting every week, on Thursday and Friday.
-  - Meeting are attended in person and if it is not possible then remote
-    meetings can be considered.
-  - Meetings Agendas and Minutes of meetings are assigned to two of the
-    team members every meeting rotating the responsibility.
-  - Every member will submit their work as a pull request and will be
-    reviewed by both team members and will be merged once all
-    suggestions are considered.
-  - When time is a constraint, we are giving an authorization for each
-    team member to submit their work on the master repository without
-    being reviewed by the rest of the team members. © 2019 GitHub, Inc.
+#### Expected Behavior:
+In order to develop a healthy learning environment, we expected following behaviors from all our team members:
+- Use of a language which everyone is comfortable with
+- Accepting the fact that all of us are not on the same page in terms of technology
+- Listen to the suggestions given by everyone
+- Accept criticism and try to learn something from that
+- Acknowledging the fact that other people might have different priorities at the time we have decided to plan a meeting
+-  Acknowledging the fact that people living off campus might not be available at odd timings
+
+#### Unexpected Behavior:
+This kind of behavior will not be acceptable and can lead to serious repercussions:
+- Making harsh comments on others work
+- Using abusive language
+- Racist comments or jokes
+- Not listening to the suggestions or points made by other team mates.
+- Pointing out others for their mistake in a rude manner
+- Missing Deadlines
+
+#### Consequences for unexpected behavior:
+In case any team member is found indulging in any of these activities, the person is expected to stop doing that on being pointed out by other team mates. In case the person is still doing the same activity, team will report the issue to the lab instructor by speaking to him or mailing him at :
+Strict actions including expulsion from the group or even course can be taken against the participant showing unexpected behavior.
+
+#### Attribution
+
+Derived from the ![Carpentries Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html)
+
+
+
+
+
+
