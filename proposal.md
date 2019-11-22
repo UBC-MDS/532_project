@@ -17,3 +17,13 @@ employment of all the jobs for a specific decade is showed in a column
 (`perc`).
 
 ## Research Questions
+
+- What are the top 10 highest occupied jobs by men?
+- What is the trend of the total count of each job over the years?
+- What is the trend of the total job count between males and females of each job overtime?
+- What is the proportion of total women and men workers overtime?
+
+
+### Usage scenarios:
+
+Katherine is an job analyzer and occupation researcher who is interested to know the trend of the total number of high men occupied jobs overtime, especially in the past ten decades. She wants to be able to [explore] a dataset in order to [compare] the trend of the total job count between different occupations. She is also eager to [identify] and [report] the differences of the total job count between males and females of a particular job overtime. It might also be helpful if Katherine can [find out] how the proportion of total female and male workers change over the period. When Katherine clicks into the “Job Count Overtime app”, she will see some of the most popular jobs during 1850 to 2000 in “tab1”. The total number of jobs by occupation are presented as a heatmap so that she can see which jobs are more popular than others. Katherine could also see the actual total count according to sex of a certain job in a specific year by using the slider to drag between “women” and “men”.  If she wants to [examine] a particular job, she can click on “tab2” to see the differences between the female and male counts overtime by using the dropdown function. If Katherine is curious about the proportion of female and male workers overtime, she can go to “tab3” to visualize the bar plots and click on an individual bar to see the actual percentage of a certain year. Katherine might notice that the number of women workers increases overtime to almost 50%. She hypothesizes that the proportion of women workers will stay stable for the next few decades. 
