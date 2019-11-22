@@ -3,6 +3,11 @@ Proposal
 
 ## Motivation and Purpose
 
+Today we have men and women working together in many fields, be it offices , hospitals or field work. This was not same few decades back.
+In the past there was a time when some jobs were male dominated, and females were reluctant to join those sectors. However, with time women broke many social norms and entered almost all the sectors.
+Also, there are sectors which were jobs which women never performed earlier, but once they entered that sector, those sectors became female dominated. In order to see this change, we are creating this app
+which will show how technology or the needs of society led to change in popularity of different jobs and how these sectors changed for men and women.
+
 ## Dataset
 
 We will be visualizing a dataset containing 7500 observations. This
