@@ -26,7 +26,7 @@ Strict actions including expulsion from the group or even course can be taken ag
 
 #### Attribution
 
-Derived from the ![Carpentries Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html)
+Derived from the [Carpentries Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html)
 
 
 
