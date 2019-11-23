@@ -7,16 +7,8 @@ Today we have men and women working together in many fields, in offices, hospita
 
 ## Dataset
 
-We will be visualizing a dataset containing 7500 observations. This
-dataset contains 5 variables. The column (`job`) specifies the jobs
-represented in the dataset, which are 250 jobs. Two genders have been
-considered; men and women and listed in the column (`sex`). The data was
-collected in 2001, for the years from 1850 till 2000 represented in a
-10-year time step in a column (`year`). The reported number of
-employments for each gender is represented in the (`count`) column. A
-percentage of the count of employment of a job over the total count of
-employment of all the jobs for a specific decade is showed in a column
-(`perc`).
+Our app will visualize the `Jobs` data from the `vega-datasets` python package. We will be visualizing a dataset containing 7500 observations. This dataset contains 5 variables. The column (`job`) specifies the jobs represented in the dataset, which are 250 jobs. Two genders have been considered; men and women and listed in the column (`sex`). The data was collected in 2001, for the years from 1850 till 2000 represented in a 10-year time step in a column (`year`). The reported number of employments for each gender is represented in the (`count`) column. A percentage of the count of employment of a job over the total count of employment of all the jobs for a specific decade is showed in a column (`perc`). We will analyze the top 10 highest occupied jobs by men as well as all the jobs in the dataset as a whole. 
+
 
 ## Research Questions
 
@@ -24,7 +16,6 @@ employment of all the jobs for a specific decade is showed in a column
 - What is the trend of the total count of each job over the years?
 - What is the trend of the total job count between males and females of each job overtime?
 - What is the proportion of total women and men workers overtime?
-
 
 ### Usage scenarios:
 
