@@ -1,3 +1,6 @@
+## Contributor Code of Conduct
+
+
 #### Introduction
 
 Code of conduct is necessary for promoting a healthy environment among the group while any group project is going on. It is not only limited to classes and labs but also when we are working off campus on any activity related to the project.
