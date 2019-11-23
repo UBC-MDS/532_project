@@ -21,8 +21,8 @@ The app contains three tabs:
 
 
 
-![](1.png)
+![](Data/1.png)
 
-![](2.png)
+![](Data/2.png)
 
-![](3.png)
+![](Data/3.png)
