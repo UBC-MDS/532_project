@@ -36,7 +36,7 @@ In case any team member is found indulging in any of these activities, the perso
 
 ### Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 2.0,
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.0,
 available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html and [Carpentries Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html), available at https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html
 
 
