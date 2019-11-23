@@ -16,13 +16,12 @@ This kind of behavior will not be acceptable and can lead to serious repercussio
 - Making harsh comments on others work
 - Using abusive language
 - Racist comments or jokes
-- Not listening to the suggestions or points made by other team mates.
+- Not listening to the suggestions or points made by other teammates.
 - Pointing out others for their mistake in a rude manner
 - Missing Deadlines
 
 #### Consequences for unexpected behavior:
-In case any team member is found indulging in any of these activities, the person is expected to stop doing that on being pointed out by other team mates. In case the person is still doing the same activity, team will report the issue to the lab instructor by speaking to him or mailing him at :
-Strict actions including expulsion from the group or even course can be taken against the participant showing unexpected behavior.
+In case any team member is found indulging in any of these activities, the person is expected to stop doing that on being pointed out by other teammates. In case the person is still doing the same activity, team will report the issue to the lab instructor to take the appropriate actions.
 
 #### Attribution
 
