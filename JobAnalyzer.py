@@ -6,11 +6,12 @@ import vega_datasets as vega
 from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__, assets_folder='assets')
+app.config['suppress_callback_exceptions'] = True
 server = app.server
 
 app.title = 'Dash app with pure Altair HTML'
 
-
+df = vega.data.jobs()
 
 
 def make_plot():
@@ -77,7 +78,6 @@ def make_plot():
 
     # Create a plot of the Displacement and the Horsepower of the cars dataset
 def ratio():
-    df = vega.data.jobs()
     gap_df = df.groupby(['year', 'sex']).sum().reset_index()
     p5 = alt.Chart(gap_df).mark_bar().encode(
         alt.X("year:O", title = "Year"),
@@ -92,10 +92,30 @@ def ratio():
     )
     return p5
 
+
+def trend(job_to_choose = 'Janitor'):
+    chart = alt.Chart(df.query('job == @job_to_choose')).mark_line().encode(
+            alt.X("year:O", title = "Year"),
+            alt.Y("count:Q", title = "Count"),
+            alt.Color("sex:N", scale=alt.Scale(
+            domain=['women', 'men'],
+            range=['pink', 'steelblue'])),
+            alt.Tooltip(['year','count', 'sex']),
+            alt.OpacityValue(0.7)
+            
+            ).properties(
+            width=1000,
+            height=400,
+            title = job_to_choose + " Number Change Over the Years ")
+    points = alt.Chart(df.query('job == @job_to_choose')).mark_point().encode(
+            alt.X("year:O", title = "Year"),
+            alt.Y("count:Q", title = "Count"),
+            alt.Color('sex')
+            )
+    return chart + points
+
+
 def heat_map():
-
-
-
 
     df = vega.data.jobs()
     men_fav = df[df["sex"] == "men"].groupby('job').sum()
@@ -135,15 +155,18 @@ app.layout = html.Div([
     dcc.Tab(label='Jobs Trend', value='tab-2'),
     dcc.Tab(label='Gender Ratio', value='tab-3'), 
     ]),
-    html.Div(id='tabs-content-example'),
+    html.Div(id='tabs-content-example')
     
     ### ADD CONTENT HERE like: html.H1('text'),
-    
 ])
 
 @app.callback(Output('tabs-content-example', 'children'),
               [Input('tabs', 'value')])
+
 def render_content(tab):
+
+
+
     if tab == 'tab-1':
         return html.Div([
             html.Iframe(
@@ -160,7 +183,40 @@ def render_content(tab):
     elif tab == 'tab-2':
         return html.Div([
             #Insert code for tab2 plot here
+            dcc.Dropdown(
+        id='dd-chart1',
+        options=[
+        {'label': 'Clerical Worker', 'value': 'Clerical Worker'},
+        {'label': 'Farm Laborer', 'value': 'Farm Laborer'},
+        {'label': 'Farmer', 'value': 'Farmer'},
+        {'label': 'Janitor', 'value': 'Janitor'},
+        {'label': 'Laborer', 'value': 'Laborer'},
+        {'label': 'Manager / Owner', 'value': 'Manager / Owner'},
+        {'label': 'Operative', 'value': 'Operative'},
+        {'label': 'Professional - Misc', 'value': 'Professional - Misc'},
+        {'label': 'Salesman', 'value': 'Salesman'},
+        {'label': 'Truck / Tractor Driver', 'value': 'Truck / Tractor Driver'},
+        # Missing option here
+        ],
+        value='Janitor',
+        style=dict(width='45%',
+                verticalAlign="middle")
+                ),
+
+        html.Iframe(
+                sandbox='allow-scripts',
+                id='plot1',
+                height='1000',
+                width='1500',
+                style={'border-width': '0'},
+                ################ The magic happens here
+                srcDoc = trend().to_html()
+                ################ The magic happens here
+                ),
+
         ])
+
+        
     elif tab == 'tab-3':
         return html.Div([
             html.Iframe(
@@ -177,5 +233,17 @@ def render_content(tab):
             #Insert code for tab2 plot here
         ])
 
+@app.callback(
+dash.dependencies.Output('plot1', 'srcDoc'),
+[dash.dependencies.Input('dd-chart1', 'value')])
+
+def update_plot(job):
+    '''
+    Takes in an job_to_choose and calls make_plot to update our Altair figure
+    '''
+    updated_plot = trend(job_to_choose=job).to_html()
+    return updated_plot
+
+    
 if __name__ == '__main__':
     app.run_server(debug=True)
