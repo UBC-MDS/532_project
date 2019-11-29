@@ -14,10 +14,7 @@ server = app.server
 app.title = 'Dash app with pure Altair HTML'
 
 df = vega.data.jobs()
-
-
-def make_plot():
-    def mds_special():
+def mds_special():
         font = "Arial"
         axisColor = "#000000"
         gridColor = "#DEDDDD"
@@ -26,7 +23,7 @@ def make_plot():
                 "title": {
                     "fontSize": 24,
                     "font": font,
-                    "anchor": "start", # equivalent of left-aligned.
+                    "anchor": "middle", # equivalent of left-aligned.
                     "fontColor": "#000000"
                 },
                 'view': {
@@ -60,7 +57,7 @@ def make_plot():
                     #"ticks": False, # even if you don't have a "domain" you need to turn these off.
                     "titleFont": font,
                     "titleFontSize": 16,
-                    "titlePadding": 10, # guessing, not specified in styleguide
+                    "titlePadding": 50, # guessing, not specified in styleguide
                     "title": "Y Axis Title (units)", 
                     # titles are by default vertical left of axis so we need to hack this 
                     #"titleAngle": 0, # horizontal
@@ -71,10 +68,13 @@ def make_plot():
                 }
 
 # register the custom theme under a chosen name
-    alt.themes.register('mds_special', mds_special)
+alt.themes.register('mds_special', mds_special)
 
     # enable the newly registered theme
-    alt.themes.enable('mds_special')
+alt.themes.enable('mds_special')
+
+
+    
     #alt.themes.enable('none') # to return to default
     
 
@@ -84,6 +84,7 @@ def ratio():
     p5 = alt.Chart(gap_df).mark_bar().encode(
         alt.X("year:O", title = "Year"),
         alt.Y("perc:Q", title = "Percentage"),
+        alt.Tooltip(['year','count', 'sex']),
         alt.Color("sex:N", title = "Sex", scale=alt.Scale(
         domain=['women', 'men'],
         range=['pink', 'steelblue']))
@@ -131,7 +132,7 @@ def heat_map():
     plot = alt.Chart(men_fav_df).mark_rect().encode(
                 alt.X('year:O', title = "Year"),
                 alt.Y('job:O', title= None),
-                color=alt.Color('count', title = "Count"),
+                color=alt.Color('count', title = "Employment Count"),
                 tooltip = ['year:O', 'job:O', 'count:Q']
             ).properties(width=800, height = 500, title = "Total employments over the Years").add_selection(
             brush
@@ -237,7 +238,7 @@ def render_content(tab):
                     srcDoc = heat_map().to_html()
                     ################ The magic happens here
                     ),
-                   
+                    
         ])
     elif tab == 'tab-2':
         return html.Div([
