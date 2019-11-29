@@ -4,8 +4,10 @@ import dash_html_components as html
 import altair as alt
 import vega_datasets as vega
 from dash.dependencies import Input, Output
+import dash_bootstrap_components as dbc
 
-app = dash.Dash(__name__, assets_folder='assets')
+
+app = dash.Dash(__name__, assets_folder='assets', external_stylesheets=[dbc.themes.CERULEAN])
 app.config['suppress_callback_exceptions'] = True
 server = app.server
 
@@ -149,6 +151,60 @@ def heat_map():
     final = plot | bars
     return final
 
+jumbotron1 = dbc.Jumbotron(
+    [
+        dbc.Container(
+            [
+                
+                html.P(
+                    "This is a heatmap showing the change of the total count of employment over the years."
+                    "Interact with this map by hovering over a point to get the details of the year, job and "
+                    "total count. You can also see the comparison between the total count for men and women by "
+                    "dragging over a region on the heatmap shown in the bar chart.",
+                    className="lead",
+                ),
+            ],
+            fluid=True,
+        )
+    ],
+    fluid=True,
+)
+
+jumbotron2 = dbc.Jumbotron(
+    [
+        dbc.Container(
+            [
+                
+                html.P(
+                       "This is a graph showing the trend of total count for a particular job for both sexes."
+                    "Interact with this graph by selecting a specific job from the dropdown menu.",
+                    className="lead",
+                ),
+            ],
+            fluid=True,
+        )
+    ],
+    fluid=True,
+)
+
+jumbotron3 = dbc.Jumbotron(
+    [
+        dbc.Container(
+            [
+                
+                html.P(
+                       "This is a graph showing the change in the labour force gender gap over time. Interact with this"
+                        "graph by hovering over a bar to get the details of the actual percentage of the selected year and"
+                        "gender.",
+                    className="lead",
+                ),
+            ],
+            fluid=True,
+        )
+    ],
+    fluid=True,
+)
+
 app.layout = html.Div([
     dcc.Tabs(id='tabs', value='tab1', children=[
     dcc.Tab(label='Jobs Count', value='tab-1'),
@@ -169,6 +225,8 @@ def render_content(tab):
 
     if tab == 'tab-1':
         return html.Div([
+             jumbotron1,
+
             html.Iframe(
                     sandbox='allow-scripts',
                     id='plot',
@@ -179,9 +237,11 @@ def render_content(tab):
                     srcDoc = heat_map().to_html()
                     ################ The magic happens here
                     ),
+                   
         ])
     elif tab == 'tab-2':
         return html.Div([
+            jumbotron2,
             #Insert code for tab2 plot here
             dcc.Dropdown(
         id='dd-chart1',
@@ -219,6 +279,7 @@ def render_content(tab):
         
     elif tab == 'tab-3':
         return html.Div([
+            jumbotron3,
             html.Iframe(
                     sandbox='allow-scripts',
                     id='plot',
