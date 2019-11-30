@@ -89,8 +89,8 @@ def ratio():
         domain=['women', 'men'],
         range=['pink', 'steelblue']))
     ).properties(
-        width=1000,
-        height=400,
+        width=600,
+        height=300,
         title = "Employement Gender Gap Over The Years"
     )
     return p5
@@ -107,8 +107,8 @@ def trend(job_to_choose = 'Janitor'):
             alt.OpacityValue(0.7)
             
             ).properties(
-            width=1000,
-            height=400,
+            width=600,
+            height=300,
             title = job_to_choose + " Number Change Over the Years ")
     points = alt.Chart(df.query('job == @job_to_choose')).mark_point().encode(
             alt.X("year:O", title = "Year"),
@@ -132,9 +132,9 @@ def heat_map():
     plot = alt.Chart(men_fav_df).mark_rect().encode(
                 alt.X('year:O', title = "Year"),
                 alt.Y('job:O', title= None),
-                color=alt.Color('count', title = "Employment Count"),
+                color=alt.Color('count', title = "Employment Count", scale=alt.Scale(scheme="reds")),
                 tooltip = ['year:O', 'job:O', 'count:Q']
-            ).properties(width=800, height = 500, title = "Total employments over the Years").add_selection(
+            ).properties(width=500, height = 300, title = "Total employments over the Years").add_selection(
             brush
             )
     bars = alt.Chart(df_men).mark_bar().encode(
@@ -144,34 +144,69 @@ def heat_map():
         domain=['women', 'men'],
         range=['pink', 'steelblue']))
     ).properties(
-        width=90,
-        height=400
+        width=70,
+        height=300
     ).transform_filter(
         brush
     )
     final = plot | bars
     return final
 
-jumbotron1 = dbc.Jumbotron(
+
+
+
+jumbotron3 = dbc.Row([
+    dbc.Col(width = 2),
+    dbc.Col(dbc.Jumbotron(
     [
         dbc.Container(
             [
                 
                 html.P(
-                    "This is a heatmap showing the change of the total count of employment over the years."
-                    "Interact with this map by hovering over a point to get the details of the year, job and "
-                    "total count. You can also see the comparison between the total count for men and women by "
-                    "dragging over a region on the heatmap shown in the bar chart.",
-                    className="lead",
+                       "This is a graph showing the change in the labour force gender gap over time. Interact with this"
+                        "graph by hovering over a bar to get the details of the actual percentage of the selected year and"
+                        "gender.",
+                    className="lead"
                 ),
             ],
             fluid=True,
+            style={'max-height': '50px', 'min-height' : '10px', 'margin-top': '-5%'}
         )
     ],
     fluid=True,
+), width=8)
+    
+]
+
 )
 
-jumbotron2 = dbc.Jumbotron(
+jumbotron1 = dbc.Row([
+    dbc.Col(width = 2),
+    dbc.Col(dbc.Jumbotron(
+    [
+        dbc.Container(
+            [
+                
+                html.P(
+                    "This is a heatmap showing the change of the employment total count over the years."
+                    "Interact with this map by hovering over a point to get more details."
+                    " A comparison between men and women is possible by "
+                    "dragging over a region on the heatmap shown in the bar chart.",
+                    className="lead",
+                    
+                ),
+            ],
+            fluid=True,
+            style={'max-height': '50px', 'min-height' : '10px', 'margin-top': '-5%'}
+        )
+    ],
+    fluid=True,
+), width=8, style={'max-height': '300px'}
+)])
+
+jumbotron2 = dbc.Row([
+    dbc.Col(),
+    dbc.Col(dbc.Jumbotron(
     [
         dbc.Container(
             [
@@ -183,28 +218,16 @@ jumbotron2 = dbc.Jumbotron(
                 ),
             ],
             fluid=True,
+            style={'max-height': '50px', 'min-height' : '10px', 'margin-top': '-5%'}
         )
     ],
     fluid=True,
+), width=8),
+    dbc.Col()
+]
+
 )
 
-jumbotron3 = dbc.Jumbotron(
-    [
-        dbc.Container(
-            [
-                
-                html.P(
-                       "This is a graph showing the change in the labour force gender gap over time. Interact with this"
-                        "graph by hovering over a bar to get the details of the actual percentage of the selected year and"
-                        "gender.",
-                    className="lead",
-                ),
-            ],
-            fluid=True,
-        )
-    ],
-    fluid=True,
-)
 
 app.layout = html.Div([
     dcc.Tabs(id='tabs', value='tab1', children=[
@@ -231,9 +254,10 @@ def render_content(tab):
             html.Iframe(
                     sandbox='allow-scripts',
                     id='plot',
-                    height='1000',
-                    width='1500',
-                    style={'border-width': '0'},
+                    height='700',
+                    width='1200',
+                    
+                    style={'border-width': '0', 'margin-left': '10%'},
                     ################ The magic happens here
                     srcDoc = heat_map().to_html()
                     ################ The magic happens here
@@ -260,22 +284,23 @@ def render_content(tab):
         # Missing option here
         ],
         value='Janitor',
-        style=dict(width='45%',
-                verticalAlign="middle")
+        style={ 'margin-left': '10%', 'width' : '45%', 'verticalAlign' : 'middle'}
                 ),
 
         html.Iframe(
                 sandbox='allow-scripts',
                 id='plot1',
-                height='1000',
-                width='1500',
-                style={'border-width': '0'},
+                height='700',
+                width='1700',
+                
+                style={'border-width': '0', 'margin-left': '20%'},
                 ################ The magic happens here
                 srcDoc = trend().to_html()
                 ################ The magic happens here
                 ),
-
-        ])
+                    
+        ], )
+    
 
         
     elif tab == 'tab-3':
@@ -285,14 +310,30 @@ def render_content(tab):
                     sandbox='allow-scripts',
                     id='plot',
                     height='1000',
-                    width='1500',
-                    style={'border-width': '0'},
+                    width='1700',
+                    style={'border-width': '0', 'margin-left': '20%'},
                     ################ The magic happens here
                     srcDoc = ratio().to_html()
                     ################ The magic happens here
                     ),
             
             #Insert code for tab2 plot here
+        ])
+    else:
+        return html.Div([
+             jumbotron1,
+
+            html.Iframe(
+                    sandbox='allow-scripts',
+                    id='plot',
+                    height='500',
+                    width='1200',
+                    style={'border-width': '0', 'margin-left': '10%'},
+                    ################ The magic happens here
+                    srcDoc = heat_map().to_html()
+                    ################ The magic happens here
+                    ),
+                    
         ])
 
 @app.callback(
