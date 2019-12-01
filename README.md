@@ -2,6 +2,8 @@
 
 Dataset: The `Jobs` data from the `vega-datasets` python package.
 
+[Deployed App](https://slack-redir.net/link?url=https%3A%2F%2Fgroup107-job-milestone2.herokuapp.com%2F)
+
 **Team Members**
 
 - Ke Xin (Margaret) Zhao
