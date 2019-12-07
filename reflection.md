@@ -40,8 +40,6 @@ App Reflection
 
 **Wishlist Features**
 
-- If there is anything you wish you had more time to implement or fix, you can list it here.
-
 - If we have more time we would love to add a fancier/prettier background to our dashboard.
 
 - In the future we might add more functionalities to our "Gender ratio" tab so that users can see the gender ratio trend of each job. 
@@ -101,27 +99,8 @@ App Reflection
 
 - Our fourth priority is to do a spacing and spelling check to make our dashboard flawless.
 
+- We did not add a title for the drop-down since we think it is obvious that those choices are referring to jobs. 
+
 - Our overall strategy for maintenance was to make our dashboard as clear and informative as possible. We do not want the users to be confused or ambiguous when exploring our app and interacting with our charts. 
 
-What feedback was the most/least valuable?
-
-- 
-
 - In short, the feedback process was very useful as it led to an informative, user-friendly, and error-free app. 
-
-*you must also add some justification for why you prioritized certain bugs/features over others*
-
-Add a title for the App
-Mention more text about the region from which data comes. Also, mention if the data is for a decade or 1 year in the heatmap
-Add percentage to the tooltip on the Gender Gap chart
-Spacing & spell check
-
-In the instruction section, it helps if you can explain how those jobs were selected for the Jobs count and jobs trend plots, and point out that the gender ratio plot includes all data points.
-
-There should be a space between the first and the second sentence in the instruction section in the jobs count and the jobs trend tabs.
-
-What type of data we have
-Heading is missing
-Mention the type of drop-down values in tab 2.
-Check typo in tab 3.
-Check the size of the pages. They are too long without any data at bottom.
