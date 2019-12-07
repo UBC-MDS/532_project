@@ -15,6 +15,7 @@ app.title = 'Dash app with pure Altair HTML'
 
 df = vega.data.jobs()
 def mds_special():
+    
         font = "Arial"
         axisColor = "#000000"
         gridColor = "#DEDDDD"
@@ -23,7 +24,7 @@ def mds_special():
                 "title": {
                     "fontSize": 24,
                     "font": font,
-                    "anchor": "middle", # equivalent of left-aligned.
+                    "anchor": "middle",
                     "fontColor": "#000000"
                 },
                 'view': {
@@ -70,21 +71,22 @@ def mds_special():
 # register the custom theme under a chosen name
 alt.themes.register('mds_special', mds_special)
 
-    # enable the newly registered theme
+# enable the newly registered theme
 alt.themes.enable('mds_special')
 
-
-    
-    #alt.themes.enable('none') # to return to default
-    
-
-    # Create a plot of the Displacement and the Horsepower of the cars dataset
+# plotting the ratio bar chart
 def ratio():
+    """
+    Wrangles the data and make the interactive bar plot.
+
+    returns:
+    an altair bar chart.
+    """
     gap_df = df.groupby(['year', 'sex']).sum().reset_index()
     p5 = alt.Chart(gap_df).mark_bar().encode(
         alt.X("year:O", title = "Year"),
         alt.Y("perc:Q", title = "Percentage"),
-        alt.Tooltip(['year','count', 'sex']),
+        alt.Tooltip(['year','count', 'sex', 'perc']),
         alt.Color("sex:N", title = "Sex", scale=alt.Scale(
         domain=['women', 'men'],
         range=['pink', 'steelblue']))
@@ -96,7 +98,18 @@ def ratio():
     return p5
 
 
+# plotting the trend line chart
+
 def trend(job_to_choose = 'Janitor'):
+    """
+    Plots a line plot for a selected job.
+
+    Arguments:
+    job_to_choose; str
+        the job to be displayed in the plot.
+    Returns:
+    an altair line plot
+    """
     chart = alt.Chart(df.query('job == @job_to_choose')).mark_line().encode(
             alt.X("year:O", title = "Year"),
             alt.Y("count:Q", title = "Count"),
@@ -117,9 +130,14 @@ def trend(job_to_choose = 'Janitor'):
             )
     return chart + points
 
-
+# Plotting the heatmap and the first tab bar chart
 def heat_map():
+    """
+    plots a heatmap.
 
+    Returns:
+    an altair heatmap.
+    """
     df = vega.data.jobs()
     men_fav = df[df["sex"] == "men"].groupby('job').sum()
     men_fav = men_fav.sort_values(by = "count", ascending=False)
@@ -140,7 +158,7 @@ def heat_map():
     bars = alt.Chart(df_men).mark_bar().encode(
         alt.X("sex:N", axis=None),
         alt.Y("count:Q", title = "Total Count"),
-        alt.Color("sex:N", title = "Sex", scale=alt.Scale(
+        alt.Color("sex:N", scale=alt.Scale(
         domain=['women', 'men'],
         range=['pink', 'steelblue']))
     ).properties(
@@ -152,10 +170,8 @@ def heat_map():
     final = plot | bars
     return final
 
-
-
-
-jumbotron3 = dbc.Row([
+# creating tab-3 header
+gender_ratio_header = dbc.Row([
     dbc.Col(width = 2),
     dbc.Col(dbc.Jumbotron(
     [
@@ -163,8 +179,8 @@ jumbotron3 = dbc.Row([
             [
                 
                 html.P(
-                       "This is a graph showing the change in the labour force gender gap over time. Interact with this"
-                        "graph by hovering over a bar to get the details of the actual percentage of the selected year and"
+                       "This is a graph showing the change in the labour force gender gap over time for all the jobs in the jobs dataset. Interact with this "
+                        "graph by hovering over a bar to get the details of the actual percentage of the selected year and "
                         "gender.",
                     className="lead"
                 ),
@@ -175,12 +191,10 @@ jumbotron3 = dbc.Row([
     ],
     fluid=True,
 ), width=8)
-    
-]
+])
 
-)
-
-jumbotron1 = dbc.Row([
+# Creating tab 1 header
+heat_map_tab_header = dbc.Row([
     dbc.Col(width = 2),
     dbc.Col(dbc.Jumbotron(
     [
@@ -189,22 +203,25 @@ jumbotron1 = dbc.Row([
                 
                 html.P(
                     "This is a heatmap showing the change of the employment total count over the years."
-                    "Interact with this map by hovering over a point to get more details."
+                    " Interact with this map by hovering over a point to get more details."
                     " A comparison between men and women is possible by "
-                    "dragging over a region on the heatmap shown in the bar chart.",
+                    "dragging over a region on the heatmap shown in the bar chart. "
+                    " Only 10 jobs out of the 250 jobs that are in the dataset are selected for the purpose of the comparison"
+                    "     ",
                     className="lead",
                     
                 ),
             ],
             fluid=True,
-            style={'max-height': '50px', 'min-height' : '10px', 'margin-top': '-5%'}
+            style={'max-height': '60px', 'min-height' : '10px', 'margin-top': '-5%'}
         )
     ],
     fluid=True,
 ), width=8, style={'max-height': '300px'}
 )])
 
-jumbotron2 = dbc.Row([
+# Create tab 2 header 
+job_trend_tab_header = dbc.Row([
     dbc.Col(),
     dbc.Col(dbc.Jumbotron(
     [
@@ -213,7 +230,7 @@ jumbotron2 = dbc.Row([
                 
                 html.P(
                        "This is a graph showing the trend of total count for a particular job for both sexes."
-                    "Interact with this graph by selecting a specific job from the dropdown menu.",
+                    " Interact with this graph by selecting a specific job from the 10 jobs in the dropdown menu.",
                     className="lead",
                 ),
             ],
@@ -224,50 +241,63 @@ jumbotron2 = dbc.Row([
     fluid=True,
 ), width=8),
     dbc.Col()
-]
+])
 
-)
-
+# Add App Header
+header = dbc.Row([
+    dbc.Col(dbc.Jumbotron(
+    [
+        dbc.Container(
+            [   html.H1(),
+                html.H1("JOB ANALYZER", style={'margin-left': '40%'}),
+                html.P(
+                       "This is an interactive dashboard analyzing the job market and comparing the changes between the two genders; males and females."
+                    " This app used vega job dataset. From 1850 till 2000 the data was collected for each decade (Except for 1890-1990).",
+                    className="lead", style={'margin-left': '10%', 'margin-right': '10%'}
+                ),
+            ],
+            fluid=True,
+            style={'max-height': '50px', 'min-height' : '10px', 'margin-top': '-5%'}
+        )
+    ],
+    fluid=True,
+))
+])
 
 app.layout = html.Div([
-    dcc.Tabs(id='tabs', value='tab1', children=[
+
+    header,
+    dcc.Tabs(id='tabs', value='tab-1', children=[
     dcc.Tab(label='Jobs Count', value='tab-1'),
     dcc.Tab(label='Jobs Trend', value='tab-2'),
     dcc.Tab(label='Gender Ratio', value='tab-3'), 
     ]),
     html.Div(id='tabs-content-example')
-    
-    ### ADD CONTENT HERE like: html.H1('text'),
 ])
 
+# App callback for selecting the tabs
 @app.callback(Output('tabs-content-example', 'children'),
               [Input('tabs', 'value')])
-
 def render_content(tab):
-
-
 
     if tab == 'tab-1':
         return html.Div([
-             jumbotron1,
+             heat_map_tab_header,
 
             html.Iframe(
                     sandbox='allow-scripts',
                     id='plot',
-                    height='700',
+                    height='600',
                     width='1200',
                     
                     style={'border-width': '0', 'margin-left': '10%'},
-                    ################ The magic happens here
                     srcDoc = heat_map().to_html()
-                    ################ The magic happens here
                     ),
                     
         ])
     elif tab == 'tab-2':
         return html.Div([
-            jumbotron2,
-            #Insert code for tab2 plot here
+            job_trend_tab_header,
             dcc.Dropdown(
         id='dd-chart1',
         options=[
@@ -281,7 +311,6 @@ def render_content(tab):
         {'label': 'Professional - Misc', 'value': 'Professional - Misc'},
         {'label': 'Salesman', 'value': 'Salesman'},
         {'label': 'Truck / Tractor Driver', 'value': 'Truck / Tractor Driver'},
-        # Missing option here
         ],
         value='Janitor',
         style={ 'margin-left': '10%', 'width' : '45%', 'verticalAlign' : 'middle'}
@@ -290,34 +319,26 @@ def render_content(tab):
         html.Iframe(
                 sandbox='allow-scripts',
                 id='plot1',
-                height='700',
+                height='600',
                 width='1700',
                 
                 style={'border-width': '0', 'margin-left': '20%'},
-                ################ The magic happens here
                 srcDoc = trend().to_html()
-                ################ The magic happens here
                 ),
                     
         ], )
     
-
-        
     elif tab == 'tab-3':
         return html.Div([
-            jumbotron3,
+            gender_ratio_header,
             html.Iframe(
                     sandbox='allow-scripts',
                     id='plot',
-                    height='1000',
+                    height='600',
                     width='1700',
                     style={'border-width': '0', 'margin-left': '20%'},
-                    ################ The magic happens here
                     srcDoc = ratio().to_html()
-                    ################ The magic happens here
                     ),
-            
-            #Insert code for tab2 plot here
         ])
     else:
         return html.Div([
@@ -329,20 +350,21 @@ def render_content(tab):
                     height='500',
                     width='1200',
                     style={'border-width': '0', 'margin-left': '10%'},
-                    ################ The magic happens here
                     srcDoc = heat_map().to_html()
-                    ################ The magic happens here
                     ),
                     
         ])
+
+# app callback for selecting the jobs from the dropdown menu
 
 @app.callback(
 dash.dependencies.Output('plot1', 'srcDoc'),
 [dash.dependencies.Input('dd-chart1', 'value')])
 
-def update_plot(job):
+# selecting the job and call the trend function
+def select_job(job):
     '''
-    Takes in an job_to_choose and calls make_plot to update our Altair figure
+    Takes a job selected using the dropdown menu and update the trend plot correspondingly
     '''
     updated_plot = trend(job_to_choose=job).to_html()
     return updated_plot
