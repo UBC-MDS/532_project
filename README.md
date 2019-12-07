@@ -2,6 +2,26 @@
 
 Dataset: The `Jobs` data from the `vega-datasets` python package.
 
+[Deployed App](https://group107-job-milestone2.herokuapp.com/)
+
+
+# App Functionality
+
+The app has three tabs each containing different plots addressing different questions:
+
+**Tab 1 (Job Count)**:
+
+This tab contains two plots connected to each other; a heatmap and a bar chart. The heatmap shows the change in the total count of employments for 10 jobs over 150 years from 1850 till 2000. The heatmap is equipped with interactive features allowing the users to get details by hovering over points and further compare the total employment counts for men and women shown in the bar chart by selecting an area in the heatmap. 
+
+**Tab 2 (Jobs Trend):**
+
+In this tab the user can select a job from the dropdown menu and will be able to see the trend of the total count change and compare it for both genders.
+
+**Tab 2 (Gender Ratio)**
+
+This tab contains a bar chart that shows how the labor force gender gap changed over the years. The plot is also equipped with an interactive feature that helps the user get details of the ratios by hovering over the plot. 
+
+
 **Team Members**
 
 - Ke Xin (Margaret) Zhao
@@ -23,8 +43,8 @@ The app contains three tabs:
 
 
 
-![](Data/1.png)
+![](Data/tab1.png)
 
-![](Data/2.png)
+![](Data/tab2.png)
 
-![](Data/3.png)
+![](Data/tab3.png)
