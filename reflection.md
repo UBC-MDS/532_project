@@ -52,20 +52,9 @@ This is the feedback we recieved in week 2 and addressed in milestone 2.
 - We hope that in the future we would get a dataset that includes the data from the 1890s. 
 
 
-**Changes Decided to Make on response to Ellen's issue**
+**Changes Decided to Make in response to Ellen's issue**
 
 [issue link](https://github.com/UBC-MDS/DSCI532_Group107_JobAnalyzer/issues/27)
-
-- If we have more time we would love to add a fancier/prettier background to our dashboard.
-
-- In the future we might add more functionalities to our "Gender ratio" tab so that users can see the gender ratio trend of each job. 
-
-- In the future we might use CSS to format our dashboard.
-
-- We hope that in the future we would get a dataset that includes the data in 1890s. 
-
-
-**Changes Decided to Make**
 
 - We changed the default tab to be the "Job Count" tab so that the users would know the first tab is selected to be the default tab. 
 
