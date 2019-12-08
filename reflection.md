@@ -6,6 +6,7 @@ App Reflection
 
 - The app uses three different tabs to help studying the change in the job market, while highlighting the differences for both genders; males and females.
 
+
 - The first tab addresses the research question about how the count of different jobs changed over years using a heatmap. By hovering over the heatmap, the user can select desired area covering one or multiple years and jobs. Selecting that area will display a bar graph showing the count of men and women doing those jobs next to the heatmap.   
 
 - If the user wants to see the total number of people employed in a job, the tooltip gives that information also regarding a particular job in any year.   
@@ -55,6 +56,17 @@ This is the feedback we recieved in week 2 and addressed in milestone 2.
 
 [issue link](https://github.com/UBC-MDS/DSCI532_Group107_JobAnalyzer/issues/27)
 
+- If we have more time we would love to add a fancier/prettier background to our dashboard.
+
+- In the future we might add more functionalities to our "Gender ratio" tab so that users can see the gender ratio trend of each job. 
+
+- In the future we might use CSS to format our dashboard.
+
+- We hope that in the future we would get a dataset that includes the data in 1890s. 
+
+
+**Changes Decided to Make**
+
 - We changed the default tab to be the "Job Count" tab so that the users would know the first tab is selected to be the default tab. 
 
 - We added a title and a description of the entire app at the top of our dashboard in order to make it clear what the data represents.
@@ -79,6 +91,9 @@ This is the feedback we recieved in week 2 and addressed in milestone 2.
 [issue 3](https://github.com/UBC-MDS/DSCI532_Group107_JobAnalyzer/issues/24)
 
 Most of the feedback triggered the same suggestions. Which are summarized as following: 
+
+**Feedback Received during Lab Session**
+
 
 - Add a title and description of the whole app.
 
